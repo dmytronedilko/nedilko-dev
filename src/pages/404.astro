@@ -1,0 +1,40 @@
+---
+// Its presence also turns off Cloudflare Pages' SPA fallback, so unknown paths
+// return a real 404 instead of the homepage with a 200.
+import Base from '../layouts/Base.astro';
+import { profile } from '../data/profile';
+---
+
+<Base title={`Page not found · ${profile.name}`} noindex>
+  <div class="page">
+    <main class="not-found">
+      <p class="code">404</p>
+      <h1>Page not found.</h1>
+      <p class="lede">Nothing lives at this address.</p>
+      <p class="home"><a href="/">Back to nedilko.dev</a></p>
+    </main>
+  </div>
+</Base>
+
+<style>
+  .not-found { padding-block: 72px 96px; }
+  .code {
+    font-size: 15.5px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.04em;
+  }
+  h1 {
+    margin-top: 12px;
+    font-weight: 800;
+    letter-spacing: -0.045em;
+    font-size: clamp(2.5rem, 6.2vw, 4.4rem);
+    line-height: 1.02;
+  }
+  .lede {
+    margin-top: 24px;
+    font-size: 19px;
+    color: var(--muted);
+  }
+  .home { margin-top: 32px; font-weight: 600; }
+</style>

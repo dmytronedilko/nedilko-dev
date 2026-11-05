@@ -1,0 +1,49 @@
+---
+import Section from './Section.astro';
+import { profile } from '../data/profile';
+const { title, note, name, prize, text, pipelineLead, pipeline, builtWith } = profile.award;
+---
+
+<Section id="award">
+  <Fragment slot="title">{title}</Fragment>
+  <Fragment slot="note">{note}</Fragment>
+  <h3>{name}</h3>
+  <p class="prize">{prize}</p>
+  <p class="text">{text}</p>
+  <p class="lead">{pipelineLead}</p>
+  <ol class="pipeline">
+    {pipeline.map((step, i) => (
+      <li>
+        {/* An SVG, not the → character, which would load Onest's 18 KB symbols subset. */}
+        {i > 0 && (
+          <svg class="arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8h11M10 4.75l3.5 3.25-3.5 3.25" /></svg>
+        )}{step}
+      </li>
+    ))}
+  </ol>
+  <p class="built">{builtWith}</p>
+</Section>
+
+<style>
+  h3 { font-weight: 700; font-size: clamp(1.8rem, 3.6vw, 2.5rem); line-height: 1.1; letter-spacing: -0.02em; }
+  .prize { margin-top: 4px; font-weight: 600; color: var(--accent); }
+  .text { margin-top: 16px; max-width: 40em; }
+  .lead { margin-top: 20px; }
+  .pipeline { display: flex; flex-wrap: wrap; gap: 0 0.4em; margin: 4px 0 0; padding: 0; list-style: none; }
+  .pipeline li { white-space: nowrap; font-weight: 600; }
+  .arrow {
+    width: 0.8em;
+    height: 0.8em;
+    margin-right: 0.2em;
+    vertical-align: -0.06em;
+    fill: none;
+    stroke: var(--muted);
+    stroke-width: 1.4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .built { margin-top: 20px; font-size: 15px; color: var(--muted); }
+  @media (min-width: 1100px) {
+    .built { white-space: nowrap; }
+  }
+</style>

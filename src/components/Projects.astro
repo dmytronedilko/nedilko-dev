@@ -1,0 +1,41 @@
+---
+import Section from './Section.astro';
+import { profile } from '../data/profile';
+const { title, note, items } = profile.projects;
+---
+
+<Section id="work">
+  <Fragment slot="title">{title}</Fragment>
+  <Fragment slot="note">{note}</Fragment>
+  <ul>
+    {items.map((p) => (
+      <li class="entry">
+        <h3>{p.name}</h3>
+        <p class="stack">{p.stack}</p>
+        <ul class="points">
+          {p.points.map((pt) => <li>{pt}</li>)}
+        </ul>
+      </li>
+    ))}
+  </ul>
+</Section>
+
+<style>
+  .entry { padding-block: 28px; border-bottom: 1px solid var(--line); }
+  .entry:first-child { padding-top: 0; }
+  .entry:last-child { border-bottom: 0; padding-bottom: 0; }
+  h3 { font-weight: 700; font-size: 26px; line-height: 1.2; }
+  .stack { margin-top: 6px; font-size: 15px; line-height: 1.55; color: var(--muted); }
+  .points { display: grid; gap: 6px; max-width: 40em; margin-top: 14px; }
+  .points li { position: relative; padding-left: 1.1em; }
+  .points li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.8em;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+</style>

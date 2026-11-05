@@ -1,0 +1,27 @@
+---
+import { profile } from '../data/profile';
+const { headline, headlineAccent, lede } = profile.hero;
+---
+
+<section class="hero" aria-labelledby="hero-title">
+  <h1 id="hero-title">{headline.join(' ')} <em>{headlineAccent}</em></h1>
+  <p class="lede">{lede}</p>
+</section>
+
+<style>
+  .hero { padding-block: 40px 64px; }
+  h1 {
+    font-weight: 800;
+    letter-spacing: -0.045em;
+    font-size: clamp(2.5rem, 6.2vw, 4.4rem);
+    line-height: 1.02;
+    max-width: 13em;
+  }
+  em { font-style: normal; color: var(--accent); }
+  .lede {
+    margin-top: 24px;
+    font-size: 19px;
+    color: var(--muted);
+    max-width: 32em;
+  }
+</style>

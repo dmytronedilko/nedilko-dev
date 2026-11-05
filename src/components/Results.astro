@@ -1,0 +1,46 @@
+---
+import Section from './Section.astro';
+import { profile } from '../data/profile';
+const { title, note, items } = profile.results;
+---
+
+<Section id="results">
+  <Fragment slot="title">{title}</Fragment>
+  <Fragment slot="note">{note}</Fragment>
+  <ul>
+    {items.map((r) => (
+      <li class="row">
+        <p class="figure">{r.figure}</p>
+        <div>
+          <h3>{r.title}</h3>
+          <p class="text">{r.text}</p>
+        </div>
+      </li>
+    ))}
+  </ul>
+</Section>
+
+<style>
+  .row {
+    display: grid;
+    grid-template-columns: minmax(150px, 34%) 1fr;
+    gap: 6px 28px;
+    align-items: center;
+    padding-block: 24px;
+    border-bottom: 1px solid var(--line);
+  }
+  .row:first-child { padding-top: 0; }
+  .row:last-child { border-bottom: 0; }
+  .figure {
+    font-weight: 800;
+    font-size: clamp(2.8rem, 7vw, 4.8rem);
+    line-height: 0.88;
+    letter-spacing: -0.05em;
+    color: var(--accent);
+  }
+  h3 { font-weight: 600; font-size: clamp(1.25rem, 2.2vw, 1.6rem); line-height: 1.25; }
+  .text { margin-top: 6px; font-size: 16px; line-height: 1.6; color: var(--muted); max-width: 34em; }
+  @media (max-width: 860px) {
+    .row { grid-template-columns: minmax(0, 1fr); }
+  }
+</style>

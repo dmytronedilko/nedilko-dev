@@ -1,0 +1,26 @@
+---
+import Section from './Section.astro';
+import { profile } from '../data/profile';
+const { title, note, groups } = profile.stack;
+---
+
+<Section id="stack">
+  <Fragment slot="title">{title}</Fragment>
+  <Fragment slot="note">{note}</Fragment>
+  <ul>
+    {groups.map((g) => (
+      <li class="group">
+        <h3>{g.title}</h3>
+        <p>{g.items}</p>
+      </li>
+    ))}
+  </ul>
+</Section>
+
+<style>
+  .group { padding-block: 20px; border-bottom: 1px solid var(--line); }
+  .group:first-child { padding-top: 0; }
+  .group:last-child { border-bottom: 0; padding-bottom: 0; }
+  h3 { font-weight: 700; font-size: 19px; line-height: 1.3; }
+  p { color: var(--muted); margin-top: 2px; }
+</style>

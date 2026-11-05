@@ -1,0 +1,17 @@
+---
+import Section from './Section.astro';
+import { profile } from '../data/profile';
+const { title, note, school, detail } = profile.education;
+---
+
+<Section id="about">
+  <Fragment slot="title">{title}</Fragment>
+  <Fragment slot="note">{note}</Fragment>
+  <h3>{school}</h3>
+  <p>{detail}</p>
+</Section>
+
+<style>
+  h3 { font-weight: 700; font-size: 21px; line-height: 1.3; }
+  p { color: var(--muted); margin-top: 2px; }
+</style>
